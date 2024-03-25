@@ -1,0 +1,102 @@
+
+@import '../vars.scss';
+
+.box {
+    @include tablet {
+        width: 30rem;
+      }
+
+      width: 20rem;
+      padding: 2rem 2rem;
+      border-radius: 1rem;
+      border: 2px solid $slate-gray;
+      background-color: $midnight-blue-transparent;
+
+      &.text-from-box {
+
+          
+          .textarea-wrapper {
+              .textarea-counter {
+                position: absolute;
+                bottom: .5rem;
+                right: .5rem;
+                color: $slate-gray;
+                font-size: .7rem;
+
+                &.error {
+                    color: $redish;
+                }
+
+              }
+            position: relative;
+
+              textarea {
+                width: 100%;
+                background-color: transparent;
+                border: none;
+                color: $ghost-white;
+                padding-top: 1rem;
+                resize: none;
+                border-radius: .5rem;
+
+                &.error {
+                    outline: 1px solid $redish;
+                }
+              }
+          }
+
+
+          .action-buttons {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .left {
+                display: flex;
+                gap: 1rem;
+
+                button {
+                    background-color: transparent;
+                    border: 2px solid $slate-gray;
+                    border-radius: .5rem;
+                    padding: .5rem .5rem;
+                    cursor: pointer;
+                    transition: background-color .4s ease-in-out;
+
+                    img {
+                        width: 1.2rem;
+                    }
+
+                    &:hover {
+                        background-color: $midnight-blue;
+                        border-color: $midnight-blue;
+                    }
+                }
+            }
+            
+            .right {
+                button {
+                    display: flex;
+                    gap: .2rem;
+                    background-color: $azure;
+                    color: $ghost-white;
+                    border: 1.5px solid $light-sky-blue;
+                    border-radius: .5rem;
+                    padding: .5rem 1rem;
+                    cursor: pointer;
+                    transition: background-color .3s;
+
+                    &:hover {
+                        background-color: $light-sky-blue;
+                    }
+                }
+            }
+          }
+      }
+
+      &.text-to-box {
+          
+      }
+
+}

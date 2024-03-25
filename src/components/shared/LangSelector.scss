@@ -1,0 +1,29 @@
+@import '../../vars.scss';
+
+.lang-selector {
+    border-bottom: 2px solid $slate-gray;
+    padding: 0 0 1rem 0;
+    display: flex;
+    gap: .5rem;
+
+    button {
+        border: none;
+        background-color: transparent;
+        color: $slate-gray;
+        font-weight: 500;
+        cursor: pointer;
+        padding: .2rem .5rem;
+        border-radius: .5rem;
+        transition: background-color .3s;
+
+        &:hover {
+            background-color: $midnight-blue-transparent;
+            color: $ghost-white;
+        }
+
+        &.selected {
+            background-color: $slate-gray;
+            color: $ghost-white;
+        }
+    }
+}

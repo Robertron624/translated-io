@@ -7,3 +7,10 @@ $azure: #3662E3;
 $light-sky-blue: #7CA9F3;
 $midnight-blue-transparent: rgba(33, 41, 54, 0.8);
 $gunmetal-transparent: rgba(18, 24, 38, 0.8);
+$redish: #d35252;
+
+@mixin tablet {
+  @media (min-width: 640px) {
+    @content;
+  }
+}
