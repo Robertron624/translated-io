@@ -2,9 +2,9 @@ import { useReducer } from 'react'
 
 import Logo from './assets/images/logo.svg'
 import TextToBox from './components/TextToBox'
-import TextFromBox from './components/UserInputBox'
+import TextFromBox from './components/TextFromBox'
 
-import useTranslation from './hooks/useTranslation'
+// import useTranslation from './hooks/useTranslation'
 
 import './App.scss'
 
@@ -48,7 +48,7 @@ function App() {
 
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  useTranslation(state.toBeTranslatedText, state.translatedFromLang, state.translatedToLang, dispatch);
+  // useTranslation(state.toBeTranslatedText, state.translatedFromLang, state.translatedToLang, dispatch);
 
   return (
     <main>
@@ -59,8 +59,10 @@ function App() {
         <TextFromBox
           toBeTranslatedText={state.toBeTranslatedText}
           translatedFromLang={state.translatedFromLang}
+          translatedToLang={state.translatedToLang}
           setTobeTranslatedText={(text) => dispatch({ type: 'CHANGE_TEXT', payload: text })}
           setTranslatedFromLang={(lang) => dispatch({ type: 'CHANGE_TRANSLATED_FROM_LANG', payload: lang })}
+          setTranslatedText={(text) => dispatch({ type: 'CHANGE_TRANSLATED_TEXT', payload: text })}
         />
         <TextToBox
           translatedText={state.translatedText}
