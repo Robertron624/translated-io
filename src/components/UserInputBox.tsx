@@ -1,20 +1,22 @@
 import React from "react";
-import LangSelector from "./shared/LangSelector";
 
+import LangSelector from "./shared/LangSelector";
 import CopyIcon from '../assets/images/Copy.svg'
 import SoundMaxFill from '../assets/images/sound_max_fill.svg'
 import SortAlfa from '../assets/images/Sort_alfa.svg'
+import { TranslateBoxType } from "../lib/types";
 
 import './Box.scss';
 
 interface Props {
+    toBeTranslatedText: string
     translatedFromLang: string
-    setText: (text: string) => void
+    setTobeTranslatedText: (text: string) => void
     setTranslatedFromLang: (lang: string) => void
 }
 
 const TextFromBox = (
-    { translatedFromLang, setText, setTranslatedFromLang }: Props
+    { toBeTranslatedText,translatedFromLang, setTobeTranslatedText, setTranslatedFromLang }: Props
 ): React.ReactElement => {
 
     const maxTextLength = 500;
@@ -22,7 +24,7 @@ const TextFromBox = (
     
     const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const text = e.target.value;
-        setText(text);
+        setTobeTranslatedText(text);
         setTextCount(text.length);
     }
 
@@ -31,6 +33,7 @@ const TextFromBox = (
             <LangSelector
                 setLangFunction={setTranslatedFromLang}
                 currentLang={translatedFromLang}
+                translateBoxType={TranslateBoxType.FROM}
             />
             <div className="textarea-wrapper">
                 <p 
@@ -46,6 +49,7 @@ const TextFromBox = (
                     maxLength={500}
                     onChange={handleTextChange}
                     className={textCount >= maxTextLength ? 'error' : ''}
+                    value={toBeTranslatedText}
                     ></textarea>
             </div>
             <div className="action-buttons">

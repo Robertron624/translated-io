@@ -4,26 +4,52 @@
     border-bottom: 2px solid $slate-gray;
     padding: 0 0 1rem 0;
     display: flex;
-    gap: .5rem;
 
-    button {
-        border: none;
-        background-color: transparent;
-        color: $slate-gray;
-        font-weight: 500;
-        cursor: pointer;
-        padding: .2rem .5rem;
-        border-radius: .5rem;
-        transition: background-color .3s;
+    &.selector-to {
+        justify-content: space-between;
+    }
 
-        &:hover {
-            background-color: $midnight-blue-transparent;
-            color: $ghost-white;
-        }
-
-        &.selected {
-            background-color: $slate-gray;
-            color: $ghost-white;
+    .left {
+        display: flex;
+        gap: .5rem;
+        button {
+            border: none;
+            background-color: transparent;
+            color: $slate-gray;
+            font-weight: 500;
+            cursor: pointer;
+            padding: .2rem .5rem;
+            border-radius: .5rem;
+            transition: background-color .3s;
+    
+            &:hover {
+                background-color: $midnight-blue-transparent;
+                color: $ghost-white;
+            }
+    
+            &.selected {
+                background-color: $slate-gray;
+                color: $ghost-white;
+            }
         }
     }
+
+    .switch {
+        cursor: pointer;
+        background-color: transparent;
+        border: 2px solid $slate-gray;
+        border-radius: .8rem;
+        padding: .2rem .2rem;
+        transition: background-color .35s ease-in-out;
+
+        img {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+
+        &:hover {
+            background-color: $ghost-white;
+        }
+    }
+
 }
