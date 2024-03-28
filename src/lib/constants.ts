@@ -14,4 +14,4 @@ export const supportedLanguages: SupportedLanguage[] = [
     { code: 'zh', name: 'Chinese' },
 ]
 
-export const baseApiUrl = 'https://api.mymemory.translated.net/'
+export const baseApiUrl = 'https://api.mymemory.translated.net/get'

@@ -1,9 +1,12 @@
 import { useReducer } from 'react'
-import './App.scss'
+
 import Logo from './assets/images/logo.svg'
 import TextToBox from './components/TextToBox'
 import TextFromBox from './components/UserInputBox'
 
+import useTranslation from './hooks/useTranslation'
+
+import './App.scss'
 
 
 interface State {
@@ -13,7 +16,7 @@ interface State {
   translatedToLang: string
 }
 
-type Action =
+export type Action =
   | { type: 'CHANGE_TEXT'; payload: string }
   | { type: 'CHANGE_TRANSLATED_TEXT'; payload: string }
   | { type: 'CHANGE_TRANSLATED_FROM_LANG'; payload: string }
@@ -44,6 +47,8 @@ const reducer = (state: State, action: Action): State => {
 function App() {
 
   const [state, dispatch] = useReducer(reducer, initialState)
+
+  useTranslation(state.toBeTranslatedText, state.translatedFromLang, state.translatedToLang, dispatch);
 
   return (
     <main>
