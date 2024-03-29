@@ -9,6 +9,7 @@
     background-position: top;
     background-repeat: no-repeat;
     height: 100vh;
+    padding-inline: 1rem;
 
     display: grid;
     place-content: center;
@@ -25,8 +26,14 @@
 
     .boxes {
       display: flex;
-      gap: 4rem;
+      gap: 1rem;
       margin-top: 5rem;
+
+      flex-direction: column;
+
+      @include desktop {
+        flex-direction: row;
+      }
     }
   }
 }

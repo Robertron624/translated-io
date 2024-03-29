@@ -36,7 +36,10 @@ function ActionButtons({
       </div>
       {withTranslate ? (
         <div className='right'>
-          <button onClick={handleTranslateClick}>
+          <button 
+            onClick={handleTranslateClick}
+            disabled={loading}
+          >
             <img src={SortAlfa} alt='Sort' />
             {loading ? "Translating..." : "Translate"}
           </button>

@@ -14,3 +14,9 @@ $redish: #d35252;
     @content;
   }
 }
+
+@mixin desktop {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}

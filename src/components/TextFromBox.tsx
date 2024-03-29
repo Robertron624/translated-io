@@ -36,7 +36,7 @@ const TextFromBox = (
 
 
     const handleTranslateClick = async () => {
-        setLoading(true); // Establece el estado de carga a verdadero
+        setLoading(true);
         try {
             const response = await axios.get(`${baseApiUrl}`, {
                 params: {
@@ -53,7 +53,7 @@ const TextFromBox = (
         } catch (error) {
             console.error('Error translating text:', error);
         } finally {
-            setLoading(false); // Establece el estado de carga a falso
+            setLoading(false);
         }
     };
     
