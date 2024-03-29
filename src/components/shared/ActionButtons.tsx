@@ -27,6 +27,7 @@ function ActionButtons({
         <button 
           className='audio'
           onClick={handleTextSpeech}
+          title="Listen"
         >
           <img src={SoundMaxFill} alt='Audio' />
         </button>
