@@ -1,10 +1,10 @@
 import { useReducer } from 'react'
+import { Toaster } from 'react-hot-toast'
 
 import Logo from './assets/images/logo.svg'
 import TextToBox from './components/TextToBox'
 import TextFromBox from './components/TextFromBox'
 
-// import useTranslation from './hooks/useTranslation'
 
 import './App.scss'
 
@@ -51,28 +51,31 @@ function App() {
   // useTranslation(state.toBeTranslatedText, state.translatedFromLang, state.translatedToLang, dispatch);
 
   return (
-    <main>
-      <div className="logo">
-        <img src={Logo} alt="Translated.io Logo" />
-      </div>
-      <div className="boxes">
-        <TextFromBox
-          toBeTranslatedText={state.toBeTranslatedText}
-          translatedFromLang={state.translatedFromLang}
-          translatedToLang={state.translatedToLang}
-          setTobeTranslatedText={(text) => dispatch({ type: 'CHANGE_TEXT', payload: text })}
-          setTranslatedFromLang={(lang) => dispatch({ type: 'CHANGE_TRANSLATED_FROM_LANG', payload: lang })}
-          setTranslatedText={(text) => dispatch({ type: 'CHANGE_TRANSLATED_TEXT', payload: text })}
-        />
-        <TextToBox
-          translatedText={state.translatedText}
-          toBeTranslatedText={state.toBeTranslatedText}
-          setTranslatedText={(text) => dispatch({ type: 'CHANGE_TRANSLATED_TEXT', payload: text })}
-          setTranslatedToLang={(lang) => dispatch({ type: 'CHANGE_TRANSLATED_TO_LANG', payload: lang })}
-          translatedToLang={state.translatedToLang}
-        />
-      </div>
-    </main>
+    <>
+      <Toaster />
+      <main>
+        <div className="logo">
+          <img src={Logo} alt="Translated.io Logo" />
+        </div>
+        <div className="boxes">
+          <TextFromBox
+            toBeTranslatedText={state.toBeTranslatedText}
+            translatedFromLang={state.translatedFromLang}
+            translatedToLang={state.translatedToLang}
+            setTobeTranslatedText={(text) => dispatch({ type: 'CHANGE_TEXT', payload: text })}
+            setTranslatedFromLang={(lang) => dispatch({ type: 'CHANGE_TRANSLATED_FROM_LANG', payload: lang })}
+            setTranslatedText={(text) => dispatch({ type: 'CHANGE_TRANSLATED_TEXT', payload: text })}
+          />
+          <TextToBox
+            translatedText={state.translatedText}
+            toBeTranslatedText={state.toBeTranslatedText}
+            setTranslatedText={(text) => dispatch({ type: 'CHANGE_TRANSLATED_TEXT', payload: text })}
+            setTranslatedToLang={(lang) => dispatch({ type: 'CHANGE_TRANSLATED_TO_LANG', payload: lang })}
+            translatedToLang={state.translatedToLang}
+          />
+        </div>
+      </main>
+    </>
   )
 }
 

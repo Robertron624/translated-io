@@ -45,54 +45,6 @@
         }
       }
     }
-
-    .action-buttons {
-      margin-top: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      .left {
-        display: flex;
-        gap: 1rem;
-
-        button {
-          background-color: transparent;
-          border: 2px solid $slate-gray;
-          border-radius: 0.5rem;
-          padding: 0.5rem 0.5rem;
-          cursor: pointer;
-          transition: background-color 0.4s ease-in-out;
-
-          img {
-            width: 1.2rem;
-          }
-
-          &:hover {
-            background-color: $midnight-blue;
-            border-color: $midnight-blue;
-          }
-        }
-      }
-
-      .right {
-        button {
-          display: flex;
-          gap: 0.2rem;
-          background-color: $azure;
-          color: $ghost-white;
-          border: 1.5px solid $light-sky-blue;
-          border-radius: 0.5rem;
-          padding: 0.5rem 1rem;
-          cursor: pointer;
-          transition: background-color 0.3s;
-
-          &:hover {
-            background-color: $light-sky-blue;
-          }
-        }
-      }
-    }
   }
 
   &.text-to-box {

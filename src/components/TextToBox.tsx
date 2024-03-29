@@ -1,5 +1,9 @@
+import toast from "react-hot-toast";
+
 import LangSelector from "./shared/LangSelector";
+import ActionButtons from "./shared/ActionButtons";
 import { TranslateBoxType } from "../lib/types";
+
 
 interface Props {
   translatedText: string;
@@ -16,6 +20,16 @@ const TextToBox = ({
   setTranslatedText,
   translatedToLang,
 }: Props): React.ReactElement => {
+
+  const handleTranslatedTextCopy = () => {
+    navigator.clipboard.writeText(translatedText);
+
+    toast.success('Translated text copied to clipboard', {
+      duration: 3000,
+      position: 'top-right',
+  });
+  }
+
   return (
     <div className='text-to-box box'>
       <LangSelector
@@ -33,6 +47,10 @@ const TextToBox = ({
           readOnly
         ></textarea>
       </div>
+      <ActionButtons
+        withTranslate={false}
+        handleCopyClick={handleTranslatedTextCopy}
+      />
     </div>
   );
 };

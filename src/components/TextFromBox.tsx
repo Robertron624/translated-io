@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 import LangSelector from "./shared/LangSelector";
-import CopyIcon from '../assets/images/Copy.svg'
-import SoundMaxFill from '../assets/images/sound_max_fill.svg'
-import SortAlfa from '../assets/images/Sort_alfa.svg'
+import ActionButtons from "./shared/ActionButtons";
+
 import { TranslateBoxType } from "../lib/types";
 import { baseApiUrl } from "../lib/constants";
 
@@ -35,33 +35,36 @@ const TextFromBox = (
     }
 
 
-    const handleTranslateClick = () => {
+    const handleTranslateClick = async () => {
         setLoading(true); // Establece el estado de carga a verdadero
         try {
-            axios.get(`${baseApiUrl}`, {
+            const response = await axios.get(`${baseApiUrl}`, {
                 params: {
                     q: toBeTranslatedText,
                     langpair: `${translatedFromLang}|${translatedToLang}`
                 }
-            }).then((response) => {
-                if (response.data.responseStatus === 200) {
-                    setTranslatedText(response
-                        .data
-                        .responseData
-                        .translatedText);
-                }
-            }
-            ).catch((error) => {
-                console.error('Error translating text:', error);
-            }).finally(() => {
-                setLoading(false); // Establece el estado de carga a falso
             });
+    
+            if (response.data.responseStatus === 200) {
+                setTranslatedText(response.data.responseData.translatedText);
+            } else {
+                console.error('Error translating text:', response.data.responseStatus);
+            }
         } catch (error) {
             console.error('Error translating text:', error);
         } finally {
             setLoading(false); // Establece el estado de carga a falso
         }
     };
+    
+    const handleCopyToBeTranslatedText = () => {
+        navigator.clipboard.writeText(toBeTranslatedText);
+
+        toast.success('Text copied to clipboard', {
+            duration: 3000,
+            position: 'top-right',
+        });
+    }
 
 
     return(
@@ -88,24 +91,12 @@ const TextFromBox = (
                     value={toBeTranslatedText}
                     ></textarea>
             </div>
-            <div className="action-buttons">
-                <div className="left">
-                    <button className="audio">
-                        <img src={SoundMaxFill} alt="Audio" />
-                    </button>
-                    <button className="copy">
-                        <img src={CopyIcon} alt="Copy" />
-                    </button>
-                </div>
-                <div className="right">
-                    <button
-                        onClick={handleTranslateClick}
-                    >
-                        <img src={SortAlfa} alt="Sort" />
-                        {loading ? 'Translating...' : 'Translate'}
-                    </button>
-                </div>
-            </div>
+            <ActionButtons 
+                withTranslate
+                loading={loading}
+                handleTranslateClick={handleTranslateClick}
+                handleCopyClick={handleCopyToBeTranslatedText}
+            />
         </div>
     )
 }
