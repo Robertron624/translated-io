@@ -11,6 +11,7 @@ interface Props {
   loading?: boolean;
   handleTranslateClick?: () => void;
   handleCopyClick: () => void;
+  handleTextSpeech?: () => void;
 }
 
 function ActionButtons({
@@ -18,14 +19,18 @@ function ActionButtons({
   loading,
   handleTranslateClick,
   handleCopyClick,
+  handleTextSpeech,
 }: Props): React.ReactElement {
   return (
     <div className='action-buttons'>
       <div className='left'>
-        <button className='audio'>
+        <button 
+          className='audio'
+          onClick={handleTextSpeech}
+        >
           <img src={SoundMaxFill} alt='Audio' />
         </button>
-        <button className='copy' onClick={handleCopyClick}>
+        <button className='copy' onClick={handleCopyClick} title="Copy">
           <img src={CopyIcon} alt='Copy' />
         </button>
       </div>

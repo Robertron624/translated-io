@@ -22,12 +22,24 @@ const TextToBox = ({
 }: Props): React.ReactElement => {
 
   const handleTranslatedTextCopy = () => {
+
+    if(!translatedText) return;
+
     navigator.clipboard.writeText(translatedText);
 
     toast.success('Translated text copied to clipboard', {
       duration: 3000,
       position: 'top-right',
   });
+  }
+
+  const handleTranslatedTextSpeech = () => {
+
+    if(!translatedText) return;
+
+    const synth = window.speechSynthesis;
+    const utterThis = new SpeechSynthesisUtterance(translatedText);
+    synth.speak(utterThis);
   }
 
   return (
@@ -50,6 +62,7 @@ const TextToBox = ({
       <ActionButtons
         withTranslate={false}
         handleCopyClick={handleTranslatedTextCopy}
+        handleTextSpeech={handleTranslatedTextSpeech}
       />
     </div>
   );

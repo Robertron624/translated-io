@@ -52,7 +52,7 @@ const LangSelector = ({
         })}
       </div>
       {translateBoxType === TranslateBoxType.TO && (
-        <button className="switch">
+        <button className="switch" title="Switch">
           <img src={switchIcon} alt="Switch texts" />
         </button>
       )}

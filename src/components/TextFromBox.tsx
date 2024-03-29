@@ -58,12 +58,24 @@ const TextFromBox = (
     };
     
     const handleCopyToBeTranslatedText = () => {
+
+        if(!toBeTranslatedText) return;
+
         navigator.clipboard.writeText(toBeTranslatedText);
 
         toast.success('Text copied to clipboard', {
             duration: 3000,
             position: 'top-right',
         });
+    }
+
+    const handleToBeTranslatedTextSpeech = () => {
+
+        if(!toBeTranslatedText) return;
+
+        const synth = window.speechSynthesis;
+        const utterThis = new SpeechSynthesisUtterance(toBeTranslatedText);
+        synth.speak(utterThis);
     }
 
 
@@ -96,6 +108,7 @@ const TextFromBox = (
                 loading={loading}
                 handleTranslateClick={handleTranslateClick}
                 handleCopyClick={handleCopyToBeTranslatedText}
+                handleTextSpeech={handleToBeTranslatedTextSpeech}
             />
         </div>
     )
