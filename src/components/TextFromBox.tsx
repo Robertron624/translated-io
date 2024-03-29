@@ -7,6 +7,7 @@ import ActionButtons from "./shared/ActionButtons";
 
 import { TranslateBoxType } from "../lib/types";
 import { baseApiUrl } from "../lib/constants";
+import { speakText } from "../lib/utils";
 
 
 import './Box.scss';
@@ -73,22 +74,7 @@ const TextFromBox = (
 
         if(!toBeTranslatedText) return;
 
-        const synth = window.speechSynthesis;
-        const utterThis = new SpeechSynthesisUtterance(toBeTranslatedText);
-
-        // match the translatedFromLang to the voice
-        const voices = synth.getVoices();
-        for (let i = 0; i < voices.length; i++) {
-            const currentVoice = voices[i];
-            const currentVoiceLang = currentVoice.lang.split('-')[0];
-            
-            if(currentVoiceLang === translatedFromLang){
-                utterThis.voice = currentVoice;
-                break;
-            }
-        }
-
-        synth.speak(utterThis);
+        speakText(toBeTranslatedText, translatedFromLang);
     }
 
 

@@ -2,7 +2,9 @@ import toast from "react-hot-toast";
 
 import LangSelector from "./shared/LangSelector";
 import ActionButtons from "./shared/ActionButtons";
+
 import { TranslateBoxType } from "../lib/types";
+import { speakText } from "../lib/utils";
 
 interface Props {
   translatedText: string;
@@ -33,22 +35,7 @@ const TextToBox = ({
   const handleTranslatedTextSpeech = () => {
     if (!translatedText) return;
 
-    const synth = window.speechSynthesis;
-    const utterThis = new SpeechSynthesisUtterance(translatedText);
-
-    // match the translatedFromLang to the voice
-    const voices = synth.getVoices();
-    for (let i = 0; i < voices.length; i++) {
-      const currentVoice = voices[i];
-      const currentVoiceLang = currentVoice.lang.split("-")[0];
-
-      if (currentVoiceLang === translatedToLang) {
-        utterThis.voice = currentVoice;
-        break;
-      }
-    }
-
-    synth.speak(utterThis);
+    speakText(translatedText, translatedToLang);
   };
 
   return (
