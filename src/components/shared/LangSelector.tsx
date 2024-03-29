@@ -10,12 +10,14 @@ interface Props {
   setLangFunction: (lang: string) => void;
   currentLang: string;
   translateBoxType: TranslateBoxType;
+  handleSwitchLangs?: () => void;
 }
 
 const LangSelector = ({
   setLangFunction,
   currentLang,
   translateBoxType,
+  handleSwitchLangs,
 }: Props): React.ReactElement => {
   
   const firstThreeLanguages = supportedLanguages.slice(0, 3);
@@ -52,7 +54,11 @@ const LangSelector = ({
         })}
       </div>
       {translateBoxType === TranslateBoxType.TO && (
-        <button className="switch" title="Switch">
+        <button 
+          className="switch" 
+          title="Switch"
+          onClick={handleSwitchLangs}
+        >
           <img src={switchIcon} alt="Switch texts" />
         </button>
       )}

@@ -9,16 +9,22 @@ import { speakText } from "../lib/utils";
 interface Props {
   translatedText: string;
   toBeTranslatedText: string;
+  translatedFromLang: string;
   translatedToLang: string;
   setTranslatedText: (text: string) => void;
+  setToBeTranslatedText: (text: string) => void;
   setTranslatedToLang: (lang: string) => void;
+  setTranslatedFromLang: (lang: string) => void;
 }
 
 const TextToBox = ({
   translatedText,
   toBeTranslatedText,
+  translatedFromLang,
   setTranslatedToLang,
+  setTranslatedFromLang,
   setTranslatedText,
+  setToBeTranslatedText,
   translatedToLang,
 }: Props): React.ReactElement => {
   const handleTranslatedTextCopy = () => {
@@ -38,12 +44,26 @@ const TextToBox = ({
     speakText(translatedText, translatedToLang);
   };
 
+  const handleSwitchLangs = () => {
+    const tempTranslatedFromLang = translatedFromLang;
+    const tempTranslatedToLang = translatedToLang;
+    const tempToBeTranslatedText = toBeTranslatedText;
+    const tempTranslatedText = translatedText;
+
+    setTranslatedFromLang(tempTranslatedToLang);
+    setTranslatedToLang(tempTranslatedFromLang);
+
+    setToBeTranslatedText(tempTranslatedText);
+    setTranslatedText(tempToBeTranslatedText);
+  }
+
   return (
     <div className='text-to-box box'>
       <LangSelector
         setLangFunction={setTranslatedToLang}
         currentLang={translatedToLang}
         translateBoxType={TranslateBoxType.TO}
+        handleSwitchLangs={handleSwitchLangs}
       />
       <div className='textarea-wrapper'>
         <textarea

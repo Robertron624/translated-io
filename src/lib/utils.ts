@@ -11,7 +11,6 @@ export const speakText = (text: string, lang: string) => {
       const currentVoiceLang = currentVoice.lang.split("-")[0];
   
       if (currentVoiceLang === lang) {
-        console.log("Matched voice", currentVoice);
         utterThis.voice = currentVoice;
         break;
       }

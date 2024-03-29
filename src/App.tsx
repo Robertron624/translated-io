@@ -70,7 +70,10 @@ function App() {
             translatedText={state.translatedText}
             toBeTranslatedText={state.toBeTranslatedText}
             setTranslatedText={(text) => dispatch({ type: 'CHANGE_TRANSLATED_TEXT', payload: text })}
+            setToBeTranslatedText={(text) => dispatch({ type: 'CHANGE_TEXT', payload: text })}
             setTranslatedToLang={(lang) => dispatch({ type: 'CHANGE_TRANSLATED_TO_LANG', payload: lang })}
+            setTranslatedFromLang={(lang) => dispatch({ type: 'CHANGE_TRANSLATED_FROM_LANG', payload: lang })}
+            translatedFromLang={state.translatedFromLang}
             translatedToLang={state.translatedToLang}
           />
         </div>
