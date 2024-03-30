@@ -16,57 +16,53 @@ const MoreLanguages = ({
   handleLangSelect,
   currentLang,
 }: Props): React.ReactElement => {
+  const [isListHidden, setIsListHidden] = useState(true);
+  const listRef = useRef<HTMLDivElement>(null);
 
-    const [isListHidden, setIsListHidden] = useState(true);
-    const listRef = useRef<HTMLDivElement>(null);
+  const handleExpandClick = () => {
+    setIsListHidden(!isListHidden);
+  };
 
-    const handleExpandClick = () => {
-        setIsListHidden(!isListHidden);
-    }
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (listRef.current && !listRef.current.contains(e.target as Node)) {
+        setIsListHidden(true);
+      }
+    };
 
-    useEffect(() => {
-        const handleClickOutside = (e: MouseEvent) => {
-            if (listRef.current && !listRef.current.contains(e.target as Node)) {
-                setIsListHidden(true);
-            }
-        }
+    document.addEventListener("mousedown", handleClickOutside);
 
-        document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        }
-    }, []);
+  return (
+    <div className='more-languages'>
+      <button className='expand-down' onClick={handleExpandClick}>
+        <img src={ExpandDown} alt='Expand down' />
+      </button>
+      <div
+        ref={listRef}
+        className={`languages-list ${isListHidden ? "hidden" : ""}`}
+      >
+        {languages.map((lang) => {
+          const langCode = lang.code;
+          const isThisBtnCurrentLang = langCode === currentLang;
 
-
-  return <div className='more-languages'>
-    <button 
-        className='expand-down'
-        onClick={handleExpandClick}    
-    >
-      <img src={ExpandDown} alt='Expand down' />
-    </button>
-    <div 
-    ref={listRef}
-    className={
-        `languages-list ${isListHidden ? "hidden" : ""}`
-    }>
-      {languages.map((lang) => {
-        const langCode = lang.code;
-        const isThisBtnCurrentLang = langCode === currentLang;
-
-        return (
-          <button
-            key={lang.code}
-            onClick={() => handleLangSelect && handleLangSelect(lang.code)}
-            className={isThisBtnCurrentLang ? "selected" : ""}
-          >
-            {lang.name}
-          </button>
-        );
-      })}
+          return (
+            <button
+              key={lang.code}
+              onClick={() => handleLangSelect && handleLangSelect(lang.code)}
+              className={isThisBtnCurrentLang ? "selected" : ""}
+            >
+              {lang.name}
+            </button>
+          );
+        })}
+      </div>
     </div>
-  </div>;
+  );
 };
 
 export default MoreLanguages;

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { supportedLanguages } from "../../lib/constants";
-import { TranslateBoxType } from "../../lib/types";
+import { TranslateBoxType, SupportedLanguage } from "../../lib/types";
 import switchIcon from "../../assets/images/Horizontal_top_left_main.svg";
 
 import "./LangSelector.scss";
@@ -22,11 +22,34 @@ const LangSelector = ({
 }: Props): React.ReactElement => {
   const firstThreeLanguages = supportedLanguages.slice(0, 3);
 
-  const restOfLanguages = supportedLanguages.slice(3);
+  const [visibleLanguages, setVisibleLanguages] =
+    useState<SupportedLanguage[]>(firstThreeLanguages);
+  const [hiddenMenuLanguages, setHiddenMenuLanguages] = useState<
+    SupportedLanguage[]
+  >(supportedLanguages.slice(3));
 
   const handleDetectLang = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     console.log("detect lang!");
+  };
+
+  const handleLangSelect = (langCode: string) => {
+    setLangFunction(langCode);
+    const selectedLangIndex = hiddenMenuLanguages.findIndex(
+      (lang) => lang.code === langCode
+    );
+    if (selectedLangIndex !== -1) {
+      const newVisibleLanguages = [...visibleLanguages];
+      const newMenuLanguages = [...hiddenMenuLanguages];
+
+      // Move the selected language to the last position of visible languages
+      newVisibleLanguages[2] = hiddenMenuLanguages[selectedLangIndex];
+      // Move the last language of visible languages to the menu languages
+      newMenuLanguages.push(visibleLanguages[2]);
+
+      setVisibleLanguages(newVisibleLanguages);
+      setHiddenMenuLanguages(newMenuLanguages);
+    }
   };
 
   return (
@@ -35,23 +58,29 @@ const LangSelector = ({
         {translateBoxType === TranslateBoxType.FROM && (
           <button onClick={handleDetectLang}>Detect language</button>
         )}
-        {firstThreeLanguages.map((lang, index) => {
+        {visibleLanguages.map((lang, index) => {
           const langCode = lang.code;
           const isThisBtnCurrentLang = langCode === currentLang;
 
           return (
-            <div className="button-wrapper" key={lang.code}>
+            <div className='button-wrapper' key={lang.code}>
               <button
-                onClick={() => setLangFunction(lang.code)}
+                onClick={
+                  isThisBtnCurrentLang
+                    ? undefined
+                    : () => {
+                        handleLangSelect(langCode);
+                      }
+                }
                 className={isThisBtnCurrentLang ? "selected" : ""}
               >
                 {lang.name}
               </button>
               {index === 2 && (
                 <MoreLanguages
-                  languages={restOfLanguages}
+                  languages={hiddenMenuLanguages}
                   currentLang={currentLang}
-                  handleLangSelect={setLangFunction}
+                  handleLangSelect={handleLangSelect}
                 />
               )}
             </div>
