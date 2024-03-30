@@ -1,30 +1,46 @@
-# React + TypeScript + Vite
+# DevChallenges Translation App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+This is a simple text translation app that allows users to translate text from English to Spanish and vice versa. The app uses the [MyMemory translation API](https://mymemory.translated.net/doc/spec.php) to perform the translations.
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Users can write the text they want to translate in the input field
+- Users can select the language they want to translate the text from
+- Users can select the language they want to translate the text to
+- Users can click the translate button to translate the text
+- Users can see the translated text in the output field
+- Users can click the swap button to swap the languages and the text
+- Users can copy the original text or the translated text to the clipboard
+- Users can click a button to hear the original text or the translated text
 
-## Expanding the ESLint configuration
+## Technologies
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Sass](https://sass-lang.com/)
+- [pnpm](https://pnpm.io/)
+- [Vite](https://vitejs.dev/)
+- [MyMemory translation API](https://mymemory.translated.net/doc/spec.php)
+- [React hot toast](https://react-hot-toast.com/)
+- [Axios](https://axios-http.com/)
 
-- Configure the top-level `parserOptions` property like this:
+## Installation
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+1. Clone the repository
+2. Run `pnpm install` to install the dependencies
+3. Run `pnpm dev` to start the development server
+4. Open `http://localhost:5173` in your browser
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Live Demo
+
+[translated-io](https://master--robert-translated-io.netlify.app/)
+
+## Screenshot
+
+![Translated-io](./screenshot.png)
+
+## Author
+
+- [Robert Ramirez](https://robert-ramirez.co/)
+- [LinkedIn](www.linkedin.com/in/roberto-ramirez-aguilar)
