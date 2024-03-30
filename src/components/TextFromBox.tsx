@@ -29,13 +29,16 @@ const TextFromBox = (
     const [textCount , setTextCount] = useState(0);
     const [loading, setLoading] = useState(false);
     
+
     const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const text = e.target.value;
         setTobeTranslatedText(text);
         setTextCount(text.length);
     }
 
-
+    // since the API free tier has a limit per day, the real time translation is not used in the project,
+    // instead the user has to click the translate button to translate the text
+    // For the real time translation search for the function in the utils.ts file
     const handleTranslateClick = async () => {
         setLoading(true);
         try {
@@ -77,6 +80,7 @@ const TextFromBox = (
         speakText(toBeTranslatedText, translatedFromLang);
     }
 
+    
 
     return(
         <div className="text-from-box box">
