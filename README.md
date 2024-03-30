@@ -24,6 +24,7 @@ This is a simple text translation app that allows users to translate text from E
 - [MyMemory translation API](https://mymemory.translated.net/doc/spec.php)
 - [React hot toast](https://react-hot-toast.com/)
 - [Axios](https://axios-http.com/)
+- [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)
 
 ## Installation
 
@@ -34,7 +35,7 @@ This is a simple text translation app that allows users to translate text from E
 
 ## Live Demo
 
-[translated-io](https://master--robert-translated-io.netlify.app/)
+[translated-io](https://robert-translated-io.netlify.app/)
 
 ## Screenshot
 
