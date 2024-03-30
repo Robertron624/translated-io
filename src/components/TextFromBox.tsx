@@ -9,7 +9,6 @@ import { TranslateBoxType } from "../lib/types";
 import { baseApiUrl } from "../lib/constants";
 import { speakText } from "../lib/utils";
 
-
 import './Box.scss';
 
 interface Props {
@@ -52,10 +51,22 @@ const TextFromBox = (
             if (response.data.responseStatus === 200) {
                 setTranslatedText(response.data.responseData.translatedText);
             } else {
-                console.error('Error translating text:', response.data.responseStatus);
+                console.error('Error translating text:', response.data);
             }
-        } catch (error) {
-            console.error('Error translating text:', error);
+        } catch (error: unknown) {
+            if (axios.isAxiosError(error)) {
+                console.error('Error translating text:', error);
+
+                if (error.response?.status === 429) {
+                    toast.error('API limit reached, please try again later', {
+                        duration: 3000,
+                        position: 'top-right',
+                    });
+                }
+            }
+            else {
+                console.error('Error translating text:', error);
+            }
         } finally {
             setLoading(false);
         }
