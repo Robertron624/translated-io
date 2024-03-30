@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import { SupportedLanguage } from "../lib/types";
 import ExpandDown from "../assets/images/Expand_down.svg";
@@ -18,10 +18,25 @@ const MoreLanguages = ({
 }: Props): React.ReactElement => {
 
     const [isListHidden, setIsListHidden] = useState(true);
+    const listRef = useRef<HTMLDivElement>(null);
 
     const handleExpandClick = () => {
         setIsListHidden(!isListHidden);
     }
+
+    useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+            if (listRef.current && !listRef.current.contains(e.target as Node)) {
+                setIsListHidden(true);
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        }
+    }, []);
 
 
   return <div className='more-languages'>
@@ -31,7 +46,9 @@ const MoreLanguages = ({
     >
       <img src={ExpandDown} alt='Expand down' />
     </button>
-    <div className={
+    <div 
+    ref={listRef}
+    className={
         `languages-list ${isListHidden ? "hidden" : ""}`
     }>
       {languages.map((lang) => {
