@@ -12,6 +12,12 @@
     .left {
         display: flex;
         gap: .5rem;
+
+        .button-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
         button {
             border: none;
             text-align: left;

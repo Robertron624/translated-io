@@ -1,0 +1,30 @@
+@import "../vars.scss";
+
+.more-languages {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .expand-down {
+    button {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  .languages-list {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 3rem;
+    height: 10rem;
+    overflow-y: scroll;
+    background: #fff;
+    padding: 0.5rem;
+    border-radius: 1rem;
+
+    &.hidden {
+      display: none;
+    }
+  }
+}
